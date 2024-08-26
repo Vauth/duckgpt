@@ -1,4 +1,4 @@
-# - github.com/Vauth/aiuncensored - #
+# - github.com/Vauth/duckgpt - #
 
 import json
 import requests
