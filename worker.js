@@ -1,3 +1,5 @@
+// - github.com/Vauth/duckgpt - //
+
 const MODELS = ['gpt-4o-mini', 'claude-3-haiku-20240307', 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo', 'mistralai/Mixtral-8x7B-Instruct-v0.1'];
 const STATUS_URL = 'https://duckduckgo.com/duckchat/v1/status';
 const CHAT_API = 'https://duckduckgo.com/duckchat/v1/chat';
