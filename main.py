@@ -3,6 +3,7 @@
 import json
 import requests
 from typing import List, Dict
+from googlesearch import get_random_user_agent
 
 class DuckGPT:
     """
@@ -19,7 +20,7 @@ class DuckGPT:
         self.chat_api = 'https://duckduckgo.com/duckchat/v1/chat'
 
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0',
+            'User-Agent': (get_random_user_agent()).decode('utf-8'),
             'Accept': '*/*',
             'Accept-Language': 'en-US,en;q=0.5',
             'Accept-Encoding': 'gzip, deflate, br, zstd',
