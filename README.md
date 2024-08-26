@@ -30,3 +30,11 @@ if __name__ == "__main__":
 - `claude-3-haiku-20240307`
 - `mistralai/Mixtral-8x7B-Instruct-v0.1`
 - `meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo`
+
+<br>
+
+## 🛠 Cloudflare Setup:
+- Upload `worker.js` into [cloudflare workers](https://workers.cloudflare.com/).
+- Use `XXX.XXXX.workers.dev/chat/?prompt=hi&model=gpt-4o-mini` endpoint.
+
+**Sample api:** [duck.gpt-api.workers.dev](https://duck.gpt-api.workers.dev/help/)
