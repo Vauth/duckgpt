@@ -1,0 +1,4 @@
+name = "duckgpt"
+main = "worker/worker.js"
+compatibility_date = "2024-05-29"
+compatibility_flags = ["nodejs_compat"]
