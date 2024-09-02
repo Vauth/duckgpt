@@ -34,7 +34,11 @@ if __name__ == "__main__":
 <br>
 
 ## 🛠 Cloudflare Setup:
+### Easy Deploy:
+
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/vauth/duckgpt)
+### Manually:
 - Upload `worker.js` into [cloudflare workers](https://workers.cloudflare.com/).
-- Use `XXX.XXXX.workers.dev/chat/?prompt=hi&model=gpt-4o-mini` endpoint.
+- Use `duckgpt.XXXX.workers.dev/chat/?prompt=hi&model=gpt-4o-mini` endpoint.
 
 **Sample api:** [duck.gpt-api.workers.dev](https://duck.gpt-api.workers.dev/help/)
