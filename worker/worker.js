@@ -13,7 +13,7 @@ async function handleRequest(request) {
   let prompt = url.searchParams.get('prompt');
   let history = url.searchParams.get('history') || '[]';
   let model = url.searchParams.get('model') || 'gpt-4o-mini';
-  let headers = { 'content-type': 'application/json', 'Access-Control-Allow-Origin': url.origin}
+  let headers = { 'content-type': 'application/json', 'Access-Control-Allow-Origin': "*"}
 
   if (!prompt || request.method !== "GET" || url.pathname !== "/chat/") {
     return new Response(await Raise(), {status: 400, headers: headers});
