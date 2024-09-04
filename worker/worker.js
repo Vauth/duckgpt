@@ -11,17 +11,18 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
   let url = new URL(request.url);
   let prompt = url.searchParams.get('prompt');
+  let history = url.searchParams.get('history') || '[]';
   let model = url.searchParams.get('model') || 'gpt-4o-mini';
   let headers = { 'content-type': 'application/json', 'Access-Control-Allow-Origin': url.origin}
 
   if (!prompt || request.method !== "GET" || url.pathname !== "/chat/") {
     return new Response(await Raise(), {status: 400, headers: headers});
   } else {
-    return new Response(await Chat(prompt, model), {status: 200, headers: headers});
+    return new Response(await Chat(prompt, history, model), {status: 200, headers: headers});
   }
 }
 
-async function Chat(prompt, model) {
+async function Chat(prompt, history, model) {
   let headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0',
     'Accept': '*/*',
@@ -41,9 +42,12 @@ async function Chat(prompt, model) {
   }
 
   headers['x-vqd-4'] = await fetch(STATUS_URL, { headers: headers }).then(response => response.headers.get('x-vqd-4'));
-  headers['Content-Type'] = 'application/json';
+  headers['Content-Type'] = 'application/json'; let message;
 
-  let data = JSON.stringify({model: model, messages: [{ role: 'user', content: prompt }]});
+  try {message = JSON.parse(history).concat([{ role: 'user', content: prompt }])
+  } catch {return JSON.stringify({"action":"error", "status": 403, "response": "Wrong history syntax", "example":"[{'role': 'user','content': 'you are an expert python geek'}]"})}
+
+  let data = JSON.stringify({model: model, messages: message});
   let Response = await (await fetch(CHAT_API, { method: 'POST', headers: headers, body: data })).text();
   let chatMessages = Response.split('\n').filter(line => line.includes('message')).map(line => JSON.parse(line.split('data: ')[1]).message).join('');
   
@@ -52,5 +56,5 @@ async function Chat(prompt, model) {
 }
 
 async function Raise() {
-  return JSON.stringify({"action":"error", "status": 404, "usage": "GET /chat/?prompt=hi&model=gpt-4o-mini", "models": MODELS});
+  return JSON.stringify({"action":"error", "status": 404, "usage": "GET /chat/?prompt=<text>&model=<model>&history=<List[Dict{str, str}]>", "models": MODELS});
 }
