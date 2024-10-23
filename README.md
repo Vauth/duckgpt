@@ -26,7 +26,7 @@
 - Upload [worker.js](https://github.com/Vauth/duckgpt/blob/main/worker/worker.js) into **Cloudflare**.
 - Finally, **Deploy**.
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/vauth/filestream-cf)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/vauth/duckgpt)
 
 <br>
 
