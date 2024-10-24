@@ -236,7 +236,7 @@ let HTML = `<!DOCTYPE html>
         <p>This GUI is an open-source project for <a href="https://github.com/vauth/duckgpt">DuckGPT</a></p>
       </div>
       <!-- <div class="intro-card card-2">
-        <img src="${CONFIG.resources.developer}" alt="Help Icon" />
+        <img src="${CONFIG.resources.help}" alt="Help Icon" />
         <p>Click the "Type a message below to start.</p>
       </div> -->
       <div class="intro-card card-3">
