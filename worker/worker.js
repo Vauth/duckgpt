@@ -171,10 +171,8 @@ let HTML = `<!DOCTYPE html>
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   </head>
@@ -226,6 +224,13 @@ let HTML = `<!DOCTYPE html>
               <span class="slider round"></span>
             </label>
           </div>
+
+          <div class="socials">
+            <a href="https://github.com/ZAR0X/duck-gui" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://t.me/execal" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="mailto:qzarox@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+          
         </div>
       </div>
     </div>
