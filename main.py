@@ -53,9 +53,20 @@ class DuckGPT:
     def Chat(self, prompt: str, history: List[Dict[str, str]]) -> str:
         data = {"model": self.model, "messages": history + [{"role": "user", "content": prompt}]}
         self.headers["x-vqd-4"] = self.GetVQD()
-        self.headers["Content-Type"] = "application/json"
+        self.headers["Content-Type"] = "application/json; charset=utf-8"
         response = requests.post(self.chat_api, headers=self.headers, json=data)
+
         if response.status_code == 200:
-            return ''.join([json.loads(i.split("data: ")[1])['message'] for i in response.text.splitlines() if 'message' in i])
+            messages = []
+            response.encoding = 'utf-8'
+            for line in response.text.splitlines():
+                if line.startswith("data: "):
+                    try:
+                        message_data = json.loads(line.split("data: ")[1])
+                        if 'message' in message_data and message_data['message']:
+                            messages.append(message_data['message'])
+                    except json.JSONDecodeError:
+                        pass # JSON decode error: Expecting value: line 1 column 2 (char 1) for line: data: [DONE]
+            return ''.join(messages)
         else:
             raise self.OperationError("Chat(): " + response.text)
