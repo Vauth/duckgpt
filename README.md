@@ -31,7 +31,7 @@
 <br>
 
 ## 📡 Live Demo
-Check out the live demo [here](https://duck.gpt-api.workers.dev). ([API Endpint](https://duck.gpt-api.workers.dev/chat/?prompt=hi&model=gpt-4o-mini))
+Check out the live demo [here](https://duck.gpt-api.workers.dev). ([API Endpoint](https://duck.gpt-api.workers.dev/chat/?prompt=hi&model=gpt-4o-mini))
 
 <br>
 
