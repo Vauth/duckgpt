@@ -61,7 +61,9 @@ async function Chat(prompt, history, model) {
     'TE': 'trailers'
   }
 
-  headers['x-vqd-4'] = await fetch(STATUS_URL, { headers: headers }).then(response => response.headers.get('x-vqd-4'));
+  const vdq = await fetch(STATUS_URL, { headers: headers });
+  headers['x-vqd-4'] = vdq.headers.get('x-vqd-4');
+  headers['x-vqd-hash-1'] = vdq.headers.get('x-vqd-hash-1');
   headers['Content-Type'] = 'application/json'; let message;
 
   try {message = JSON.parse(history).concat([{ role: 'user', content: prompt }])
