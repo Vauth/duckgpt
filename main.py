@@ -2,7 +2,7 @@
 
 import json
 import requests
-from typing import List, Dict
+from typing import List, Dict, Tuple
 from googlesearch import get_random_user_agent
 
 class DuckGPT:
@@ -42,17 +42,17 @@ class DuckGPT:
             self.error_text = error_text
             super().__init__(error_text)
 
-    def GetVQD(self) -> str:
+    def GetVQD(self) -> tuple[str, str]:
         response = requests.get(self.status_url, headers=self.headers)
-        if response.headers.get('x-vqd-4'): return response.headers['x-vqd-4']
+        if response.headers.get('x-vqd-4'): return response.headers['x-vqd-4'], response.headers['x-vqd-hash-1']
         else: raise self.OperationError("GetVQD(): No 'x-vqd-4' header found.")
 
     def Models(self) -> list:
-        return ['gpt-4o-mini', 'claude-3-haiku-20240307', 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo', 'mistralai/Mixtral-8x7B-Instruct-v0.1']
+        return ['gpt-4o-mini', 'o3-mini', 'claude-3-haiku-20240307', 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo', 'mistralai/Mixtral-8x7B-Instruct-v0.1']
 
     def Chat(self, prompt: str, history: List[Dict[str, str]]) -> str:
         data = {"model": self.model, "messages": history + [{"role": "user", "content": prompt}]}
-        self.headers["x-vqd-4"] = self.GetVQD()
+        self.headers["x-vqd-4"], self.headers["x-vqd-hash-1"] = self.GetVQD()
         self.headers["Content-Type"] = "application/json; charset=utf-8"
         response = requests.post(self.chat_api, headers=self.headers, json=data)
 
